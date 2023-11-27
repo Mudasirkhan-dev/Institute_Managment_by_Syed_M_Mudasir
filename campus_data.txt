@@ -1,0 +1,7 @@
+Campus ID: dsdsdsds
+Campus Name: dsdsd
+Address: sdsds
+Telephone Number: dsdsds
+Email: dsdsd
+Departments: ['sdsad', 'dsdsd', 'sdsds', 'dsds']
+
