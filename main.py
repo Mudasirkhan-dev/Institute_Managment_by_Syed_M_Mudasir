@@ -1,3 +1,19 @@
+# Sumbitted by  : Syed Muhammad Mudasir
+# Rollno        : F21BSEEN1E02007
+# Semester      : 5th
+# Section       : E1
+# Project       : Institute Configuration In Tkinter
+# Sumbitted To  : Sir Nauman
+
+# To install All The packages just type 
+
+# "pip install -r requirements.txt" 
+
+# in the terminal of vscode or whichever IDE you are Using
+
+
+
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -22,7 +38,7 @@ class InstituteConfigurationApp:
         self.notebook.add(self.faculty_tab, text="Faculty")
         self.notebook.add(self.department_tab, text="Department")
 
-        # Initialize tabs
+        # Initializing tabs
         self.init_campus_tab()
         self.init_faculty_tab()
         self.init_department_tab()
@@ -32,7 +48,8 @@ class InstituteConfigurationApp:
         # Center the window on the screen
         self.center_window()
 
-    def center_window(self):
+    # Function For Centering out the window
+    def center_window(self):  
         # Get the screen width and height
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
@@ -48,7 +65,7 @@ class InstituteConfigurationApp:
 # Campus Area Start
 
     def init_campus_tab(self):
-        # Add widgets for Campus tab
+        # Widgets for Campus tab
         campus_frame = ttk.LabelFrame(self.campus_tab, text="Campus Information")
         campus_frame.grid(row=0, column=0, padx=10, pady=10)
 
@@ -62,13 +79,9 @@ class InstituteConfigurationApp:
         campus_name_entry = ttk.Entry(campus_frame)
         campus_name_entry.grid(row=1, column=1, pady=5)
 
-        address_label = ttk.Label(campus_frame, text="Address:")
-        address_label.grid(row=2, column=0, sticky=tk.W)
-        address_entry = ttk.Entry(campus_frame)
-        address_entry.grid(row=2, column=1, pady=5)
 
         contact_info_label = ttk.Label(campus_frame, text="Contact Information:")
-        contact_info_label.grid(row=3, column=0, sticky=tk.W)
+        contact_info_label.grid(row=3, column=0, padx=6, sticky=tk.W)
 
         telephone_label = ttk.Label(campus_frame, text="Telephone Number:")
         telephone_label.grid(row=4, column=0, sticky=tk.W)
@@ -80,6 +93,11 @@ class InstituteConfigurationApp:
         email_entry = ttk.Entry(campus_frame)
         email_entry.grid(row=5, column=1, pady=5)
 
+        address_label = ttk.Label(campus_frame, text="Address:")
+        address_label.grid(row=2, column=0, sticky=tk.W)
+        address_entry = ttk.Entry(campus_frame)
+        address_entry.grid(row=2, column=1, pady=5)
+
         departments_label = ttk.Label(campus_frame, text="List of Departments:")
         departments_label.grid(row=6, column=0, sticky=tk.W)
         departments_text = tk.Text(campus_frame, height=4, width=30)
@@ -90,11 +108,11 @@ class InstituteConfigurationApp:
             telephone_entry.get(), email_entry.get(), departments_text.get("1.0", tk.END).strip().split('\n')))
         add_button.grid(row=7, column=0, columnspan=2, pady=10)
 
-        # Add "Display Campus" button
+        # "Display Campus" button
         display_button = ttk.Button(campus_frame, text="Display Campus", command=self.display_campus)
         display_button.grid(row=8, column=0, columnspan=2, pady=5)
 
-        # Add "Clear Entries" button
+        # "Clear Entries" button
         clear_button = ttk.Button(campus_frame, text="Clear Entries", command=lambda: self.clear_entries(
             campus_id_entry, campus_name_entry, address_entry,
             telephone_entry, email_entry, departments_text))
@@ -203,7 +221,7 @@ class InstituteConfigurationApp:
 # Faculty Area Start
 
     def init_faculty_tab(self):
-        # Add widgets for Faculty tab
+        # Widgets for Faculty tab
         faculty_frame = ttk.LabelFrame(self.faculty_tab, text="Faculty Information")
         faculty_frame.grid(row=0, column=0, padx=10, pady=10)
 
@@ -218,9 +236,9 @@ class InstituteConfigurationApp:
         full_name_entry.grid(row=1, column=1, pady=5)
 
         contact_info_label = ttk.Label(faculty_frame, text="Contact Information:")
-        contact_info_label.grid(row=2, column=0, sticky=tk.W)
+        contact_info_label.grid(row=2, column=0, padx=6 , sticky=tk.W)
 
-        phone_label = ttk.Label(faculty_frame, text="Phone Number:")
+        phone_label = ttk.Label(faculty_frame, text="Telephone Number:")
         phone_label.grid(row=3, column=0, sticky=tk.W)
         phone_entry = ttk.Entry(faculty_frame)
         phone_entry.grid(row=3, column=1, pady=5)
@@ -256,11 +274,11 @@ class InstituteConfigurationApp:
             teaching_subjects_text.get("1.0", tk.END).strip().split('\n')))
         add_button.grid(row=9, column=0, columnspan=2, pady=10)
 
-        # Add "Display Faculty" button
+        # "Display Faculty" button
         display_button = ttk.Button(faculty_frame, text="Display Faculty", command=self.display_faculty)
         display_button.grid(row=10, column=0, columnspan=2, pady=5)
 
-        # Add "Clear Entries" button
+        # "Clear Entries" button
         clear_button = ttk.Button(faculty_frame, text="Clear Entries", command=lambda: self.clear_entries(
             faculty_id_entry, full_name_entry, phone_entry, email_entry,
             address_entry, department_entry, qualifications_entry,
@@ -296,15 +314,15 @@ class InstituteConfigurationApp:
         messagebox.showinfo("Success", "Faculty added successfully!")
 
     def display_faculty(self):
-        # Create a new window to display faculty information
+        # A new window to display faculty information
         display_window = tk.Toplevel(self.root)
         display_window.title("Faculty Information")
 
-        # Create a Text widget with a vertical scrollbar
+        # A Text widget with a vertical scrollbar
         faculty_info_text = tk.Text(display_window, height=20, width=50)
         faculty_info_text.pack(side=tk.LEFT, fill=tk.Y , padx=10 ,pady=10)
 
-        # Create a scrollbar and link it to the Text widget
+        # A scrollbar and link it to the Text widget
         scrollbar = tk.Scrollbar(display_window, command=faculty_info_text.yview)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         faculty_info_text.config(yscrollcommand=scrollbar.set)
@@ -313,11 +331,11 @@ class InstituteConfigurationApp:
             faculty_info_text.insert(tk.END, "\n".join([f"{key}: {value}" for key, value in faculty.items()]))
             faculty_info_text.insert(tk.END, "\n\n")
 
-        # Add "Close" button
+        # "Close" button
         close_button = ttk.Button(display_window, text="Close", command=display_window.destroy)
         close_button.pack(padx=10 ,pady=10)
 
-        # Add "Delete" button
+        # "Delete" button
         delete_button = ttk.Button(display_window, text="Delete", command=lambda: self.confirm_delete_faculty(display_window, faculty_info_text))
         delete_button.pack(padx=10 , pady=5)
 
@@ -373,7 +391,7 @@ class InstituteConfigurationApp:
 # Department Area Start
 
     def init_department_tab(self):
-        # Add widgets for Department tab
+        # Widgets for Department tab
         department_frame = ttk.LabelFrame(self.department_tab, text="Department Information")
         department_frame.grid(row=0, column=0, padx=10, pady=10)
 
@@ -392,41 +410,44 @@ class InstituteConfigurationApp:
         head_of_department_entry = ttk.Entry(department_frame)
         head_of_department_entry.grid(row=2, column=1, pady=5)
 
+        contact_info_label = ttk.Label(department_frame, text="Contact Information:")
+        contact_info_label.grid(row=3, column=0, padx=6 , sticky=tk.W)
+
         telephone_label = ttk.Label(department_frame, text="Telephone Number:")
-        telephone_label.grid(row=3, column=0, sticky=tk.W)
+        telephone_label.grid(row=4, column=0, sticky=tk.W)
         telephone_entry = ttk.Entry(department_frame)
-        telephone_entry.grid(row=3, column=1, pady=5)
+        telephone_entry.grid(row=4, column=1, pady=5)
 
         email_label = ttk.Label(department_frame, text="Email:")
-        email_label.grid(row=4, column=0, sticky=tk.W)
+        email_label.grid(row=5, column=0, sticky=tk.W)
         email_entry = ttk.Entry(department_frame)
-        email_entry.grid(row=4, column=1, pady=5)
+        email_entry.grid(row=5, column=1, pady=5)
 
         office_location_label = ttk.Label(department_frame, text="Office Location:")
-        office_location_label.grid(row=5, column=0, sticky=tk.W)
+        office_location_label.grid(row=6, column=0, sticky=tk.W)
         office_location_entry = ttk.Entry(department_frame)
-        office_location_entry.grid(row=5, column=1, pady=5)
+        office_location_entry.grid(row=6, column=1, pady=5)
 
-        description_label = ttk.Label(department_frame, text="Description or Mission Statement:")
-        description_label.grid(row=6, column=0, sticky=tk.W)
+        description_label = ttk.Label(department_frame, text="Description:")
+        description_label.grid(row=7, column=0, sticky=tk.W)
         description_text = tk.Text(department_frame, height=4, width=30)
-        description_text.grid(row=6, column=1, pady=5)
+        description_text.grid(row=7, column=1, pady=5)
 
         add_button = ttk.Button(department_frame, text="Add Department", command=lambda: self.add_department(
             department_id_entry.get(), department_name_entry.get(), head_of_department_entry.get(),
             telephone_entry.get(), email_entry.get(), office_location_entry.get(),
             description_text.get("1.0", tk.END).strip().split('\n')))
-        add_button.grid(row=7, column=0, columnspan=2, pady=10)
+        add_button.grid(row=8, column=0, columnspan=2, pady=10)
 
-        # Add "Display Department" button
+        # "Display Department" button
         display_button = ttk.Button(department_frame, text="Display Department", command=self.display_department)
-        display_button.grid(row=8, column=0, columnspan=2, pady=5)
+        display_button.grid(row=9, column=0, columnspan=2, pady=5)
 
-        # Add "Clear Entries" button
+        # "Clear Entries" button
         clear_button = ttk.Button(department_frame, text="Clear Entries", command=lambda: self.clear_entries(
             department_id_entry, department_name_entry, head_of_department_entry,
             telephone_entry, email_entry, office_location_entry, description_text))
-        clear_button.grid(row=9, column=0, columnspan=2, pady=5)
+        clear_button.grid(row=10, column=0, columnspan=2, pady=5)
 
     def add_department(self, department_id, department_name, head_of_department, telephone, email, office_location, description):
         # Validation check for required fields
@@ -455,15 +476,15 @@ class InstituteConfigurationApp:
         messagebox.showinfo("Success", "Department added successfully!")
 
     def display_department(self):
-        # Create a new window to display department information
+        # A new window to display department information
         display_window = tk.Toplevel(self.root)
         display_window.title("Department Information")
 
-        # Create a Text widget with a vertical scrollbar
+        # A Text widget with a vertical scrollbar
         department_info_text = tk.Text(display_window, height=20, width=50)
         department_info_text.pack(side=tk.LEFT, fill=tk.Y, padx=10, pady=10)
 
-        # Create a scrollbar and link it to the Text widget
+        # A scrollbar and link it to the Text widget
         scrollbar = tk.Scrollbar(display_window, command=department_info_text.yview)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         department_info_text.config(yscrollcommand=scrollbar.set)
@@ -472,11 +493,11 @@ class InstituteConfigurationApp:
             department_info_text.insert(tk.END, "\n".join([f"{key}: {value}" for key, value in department.items()]))
             department_info_text.insert(tk.END, "\n\n")
 
-        # Add "Close" button
+        # "Close" button
         close_button = ttk.Button(display_window, text="Close", command=display_window.destroy)
         close_button.pack(padx=10, pady=10)
 
-        # Add "Delete" button
+        # "Delete" button
         delete_button = ttk.Button(display_window, text="Delete", command=lambda: self.confirm_delete_department(display_window, department_info_text))
         delete_button.pack(padx=10, pady=5)
 

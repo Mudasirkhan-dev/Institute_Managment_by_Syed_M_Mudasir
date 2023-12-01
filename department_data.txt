@@ -1,8 +1,0 @@
-Department ID: dsdsd
-Department Name: dsdsd
-Head of Department: dsds
-Telephone Number: dsdsds
-Email: dsdsd
-Office Location: sdsd
-Description: ['dsdsd', 'sdsds', 'dfdfd']
-

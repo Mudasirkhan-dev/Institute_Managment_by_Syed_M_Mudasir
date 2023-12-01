@@ -1,9 +1,0 @@
-Faculty ID: dsdsdsdsds
-Full Name: dsdsdsd
-Phone Number: sdsdsd
-Email: sdsds
-Address: dsdsd
-Department Affiliation: sdsdsd
-Qualifications: sdsd
-Teaching Subjects: ['sdsds', 'dsds', 'dfdfd']
-
