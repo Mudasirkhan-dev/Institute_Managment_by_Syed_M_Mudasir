@@ -1,3 +1,16 @@
+# Sumbitted by  : Syed Muhammad Mudasir
+# Rollno        : F21BSEEN1E02007
+# Semester      : 5th
+# Section       : E1
+# Project       : Institute Configuration In Tkinter
+# Sumbitted To  : Sir Nauman
+
+# To install All The packages just type 
+
+# "pip install -r requirements.txt"  in the terminal of vscode or whichever IDE you are Using
+
+
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
