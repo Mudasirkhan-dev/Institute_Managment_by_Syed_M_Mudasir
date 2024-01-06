@@ -17,7 +17,7 @@
 
     - [Important to Know] :
         Make sure to run the API seperately (In the seperate console or run it seperately) other-wise you may run into problems.
-        or Just paste this in the console  [ >> python InstituteConfigApi.py ] 
+        or Just paste this in the console  [ >> python RestApi.py ] 
 
         You can Update and Delete the data via clicking on the Rows of Preview Window.
 

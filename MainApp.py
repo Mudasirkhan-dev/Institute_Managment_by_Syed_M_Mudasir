@@ -76,6 +76,7 @@ class CampusTab:
         campus_frame = ttk.LabelFrame(self.parent, text="Campus Information")
         campus_frame.grid(row=0, column=0, padx=30, pady=10, sticky=tk.W)
 
+        # Lables and Entries
         campus_id_label = ttk.Label(campus_frame, text="Campus ID :")
         campus_id_label.grid(row=0, column=1 , padx=15 , sticky=tk.W)
         self.campus_id_entry = ttk.Entry(campus_frame)
@@ -109,6 +110,7 @@ class CampusTab:
         self.departments_text = tk.Text(campus_frame, height=4, width=30)
         self.departments_text.grid(row=7, column=2, padx=20 , pady=5 , sticky=tk.W+tk.E)
 
+        # Buttons
         self.add_button = ttk.Button(campus_frame, text="Add Campus", command=self.add_campus)
         self.add_button.grid(row=8, column=1, pady=10)
 
@@ -153,7 +155,6 @@ class CampusTab:
         address = self.address_entry.get()
         departments = self.departments_text.get("1.0", tk.END)
 
-        # Validate input fields (add your own validation logic)
         if not campus_id or not campus_name or not telephone or not email or not address:
             messagebox.showerror("Error", "Please fill in all the required fields.")
             return
@@ -168,7 +169,7 @@ class CampusTab:
             "departments": departments
         }
 
-        # Correct API endpoint for adding campus data
+        # API endpoint for adding campus data
         api_endpoint = "http://localhost:5000/campus"
 
         try:
@@ -185,7 +186,7 @@ class CampusTab:
             messagebox.showerror("Error", f"Failed to add campus: {e}")
 
     def show_campus_data(self):
-        # Correct API endpoint for retrieving campus data
+        # API endpoint for retrieving campus data
         api_endpoint = "http://localhost:5000/campus"
 
         try:
@@ -198,8 +199,7 @@ class CampusTab:
 
             # Display actual data retrieved from the API
             for row in data:
-                self.tree.insert("", tk.END, values=(row["campus_id"], row["campus_name"], row["telephone"], row["email"],
-                                                     row["address"], row["departments"]))
+                self.tree.insert("", tk.END, values=(row["campus_id"], row["campus_name"], row["telephone"], row["email"],row["address"], row["departments"]))
 
         except requests.RequestException as e:
             messagebox.showerror("Error", f"Failed to fetch campus data: {e}")
@@ -238,7 +238,7 @@ class CampusTab:
             messagebox.showinfo("Update", "Please select a row to update.")
 
     def update_campus(self):
-        # Implement logic to update selected row
+        
         selected_item = self.tree.selection()
         if selected_item:
             campus_id = self.campus_id_entry.get()
@@ -248,7 +248,7 @@ class CampusTab:
             address = self.address_entry.get()
             departments = self.departments_text.get("1.0", tk.END)
 
-            # Validate input fields (add your own validation logic)
+            
             if not campus_id or not campus_name or not telephone or not email or not address:
                 messagebox.showerror("Error", "Please fill in all the required fields.")
                 return
@@ -263,7 +263,7 @@ class CampusTab:
                 "departments": departments
             }
 
-            # Correct API endpoint for updating campus data
+            # API endpoint for updating campus data
             update_api_endpoint = f"http://localhost:5000/campus/{campus_id}"
 
             try:
@@ -287,12 +287,12 @@ class CampusTab:
             messagebox.showinfo("Update", "Please select a row to update.")
 
     def delete_campus(self):
-        # Implement logic to delete selected row
+        
         selected_item = self.tree.selection()
         if selected_item:
             campus_id = self.campus_id_entry.get()
 
-            # Correct API endpoint for deleting campus data
+            # API endpoint for deleting campus data
             delete_api_endpoint = f"http://localhost:5000/campus/{campus_id}"
 
             try:
@@ -417,7 +417,6 @@ class FacultyTab:
         address = self.address.get()
         subjects = self.teaching_subjects_text.get("1.0", tk.END)
 
-        # Validate input fields (add your own validation logic)
         if not faculty_id or not faculty_name or not faculty_dean or not telephone or not email or not address:
             messagebox.showerror("Error", "Please fill in all the required fields.")
             return
@@ -433,16 +432,16 @@ class FacultyTab:
             "subjects": subjects
         }
 
-        # Correct API endpoint for adding faculty data
+        
         api_endpoint = "http://localhost:5000/faculty"
 
         try:
             response = requests.post(api_endpoint, json=faculty_data)
             if response.status_code == 201:
                 messagebox.showinfo("Success", "Faculty added successfully.")
-                # Update the treeview with the new data
+               
                 self.show_faculty_data()
-                # Clear the entries
+               
                 self.clear_entries()
             else:
                 messagebox.showerror("Error", f"Failed to add faculty: {response.text}")
@@ -450,7 +449,7 @@ class FacultyTab:
             messagebox.showerror("Error", f"Failed to add faculty: {e}")
 
     def show_faculty_data(self):
-        # Correct API endpoint for retrieving faculty data
+       
         api_endpoint = "http://localhost:5000/faculty"
 
         try:
@@ -526,7 +525,7 @@ class FacultyTab:
             address = self.address.get()
             subjects = self.teaching_subjects_text.get("1.0", tk.END)
 
-            # Validate input fields (add your own validation logic)
+            
             if not faculty_id or not faculty_name or not faculty_dean or not telephone or not email or not address:
                 messagebox.showerror("Error", "Please fill in all the required fields.")
                 return
@@ -542,7 +541,7 @@ class FacultyTab:
                 "subjects": subjects
             }
 
-            # Correct API endpoint for updating faculty data
+            
             update_api_endpoint = f"http://localhost:5000/faculty/{faculty_id}"
 
             try:
@@ -554,9 +553,9 @@ class FacultyTab:
                     self.delete_button["state"] = tk.DISABLED
                     # Clear the selected_item attribute
                     self.selected_item = None
-                    # Clear the entries
+                    
                     self.clear_entries()
-                    # Update the treeview with the new data
+                    
                     self.show_faculty_data()
                 else:
                     messagebox.showerror("Error", f"Failed to update faculty: {response.text}")
@@ -570,7 +569,7 @@ class FacultyTab:
         if selected_item:
             faculty_id = self.faculty_id.get()
 
-            # Correct API endpoint for deleting faculty data
+            
             delete_api_endpoint = f"http://localhost:5000/faculty/{faculty_id}"
 
             try:
@@ -607,20 +606,20 @@ class DepartmentTab:
         self.init_department_tab()
 
     def init_department_tab(self):
+        
         department_frame = ttk.LabelFrame(self.parent, text="Department Information")
         department_frame.grid(row=0, column=0, padx=30, pady=10 , sticky=tk.W)
 
-        # Department ID
+        # Labels and Entries
+
         ttk.Label(department_frame, text="Department ID :").grid(row=0, column=0, padx=15 ,sticky=tk.W)
         self.department_id = ttk.Entry(department_frame)
         self.department_id.grid(row=0, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
 
-        # Department Name
         ttk.Label(department_frame, text="Department Name :").grid(row=1, column=0, padx=15 , sticky=tk.W)
         self.department_name = ttk.Entry(department_frame)
         self.department_name.grid(row=1, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
 
-        # Department Head
         ttk.Label(department_frame, text="Department Head :").grid(row=2, column=0, padx=15 , sticky=tk.W)
         self.department_head = ttk.Entry(department_frame)
         self.department_head.grid(row=2, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
@@ -628,17 +627,14 @@ class DepartmentTab:
         contact_info_label = ttk.Label(department_frame, text="Contact Info :-")
         contact_info_label.grid(row=3, column=0, padx=15 , pady=10 , sticky=tk.W)
 
-        # Telephone Number
         ttk.Label(department_frame, text="Telephone Number :").grid(row=4, column=0 ,padx=25 , sticky=tk.W)
         self.phone = ttk.Entry(department_frame)
         self.phone.grid(row=4, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
 
-        # Email
         ttk.Label(department_frame, text="Email :").grid(row=5, column=0 ,padx=25 , sticky=tk.W)
         self.email = ttk.Entry(department_frame)
         self.email.grid(row=5, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
 
-        # List of Courses
         ttk.Label(department_frame, text="List of Courses :").grid(row=6, column=0 , padx=15 , sticky=tk.W)
         self.courses_text = tk.Text(department_frame, height=4, width=30)
         self.courses_text.grid(row=6, column=1, padx=20 , pady=5 , sticky=tk.W+tk.E)
@@ -687,7 +683,7 @@ class DepartmentTab:
         email = self.email.get()
         courses = self.courses_text.get("1.0", tk.END)
 
-        # Validate input fields (add your own validation logic)
+
         if not department_id or not department_name or not department_head or not phone or not email:
             messagebox.showerror("Error", "Please fill in all the required fields.")
             return
@@ -702,16 +698,16 @@ class DepartmentTab:
             "courses": courses
         }
 
-        # Example API endpoint for adding department data (replace with your actual endpoint)
+ 
         api_endpoint = "http://localhost:5000/department/add"
 
         try:
             response = requests.post(api_endpoint, json=department_data)
             if response.status_code == 200:
                 messagebox.showinfo("Success", "Department added successfully.")
-                # Update the treeview with the new data
+
                 self.show_department_data()
-                # Clear the entries
+
                 self.clear_entries()
             else:
                 messagebox.showerror("Error", f"Failed to add department: {response.text}")
@@ -719,18 +715,16 @@ class DepartmentTab:
             messagebox.showerror("Error", f"Failed to add department: {e}")
 
     def show_department_data(self):
-        # Correct API endpoint for retrieving department data
+        
         api_endpoint = "http://localhost:5000/department"
 
         try:
             response = requests.get(api_endpoint)
             data = response.json()
 
-            # Clear existing data in the treeview
             for item in self.tree.get_children():
                 self.tree.delete(item)
 
-            # Display actual data retrieved from the API
             for row in data:
                 self.tree.insert("", tk.END, values=(
                     row["department_id"], row["department_name"], row["department_head"], row["phone"], row["email"], row["courses"]
@@ -751,7 +745,6 @@ class DepartmentTab:
                 # Set the selected_item attribute
                 self.selected_item = selected_item
     
-                # Populate entry fields with selected data
                 self.department_id.delete(0, tk.END)
                 self.department_id.insert(0, selected_data[0])
     
@@ -787,7 +780,7 @@ class DepartmentTab:
             email = self.email.get()
             courses = self.courses_text.get("1.0", tk.END)
 
-            # Validate input fields (add your own validation logic)
+            
             if not department_id or not department_name or not department_head or not phone or not email:
                 messagebox.showerror("Error", "Please fill in all the required fields.")
                 return
@@ -802,16 +795,16 @@ class DepartmentTab:
                 "courses": courses
             }
 
-            # Example API endpoint for updating department data (replace with your actual endpoint)
+            
             api_endpoint = f"http://localhost:5000/department/{department_id}"
 
             try:
                 response = requests.put(api_endpoint, json=updated_department_data)
                 if response.status_code == 200:
                     messagebox.showinfo("Success", "Department updated successfully.")
-                    # Update the treeview with the new data
+
                     self.show_department_data()
-                    # Clear the entries
+
                     self.clear_entries()
                 else:
                     messagebox.showerror("Error", f"Failed to update department: {response.text}")
@@ -825,16 +818,16 @@ class DepartmentTab:
         if selected_item:
             department_id = self.department_id.get()
 
-            # Example API endpoint for deleting department data (replace with your actual endpoint)
+            
             api_endpoint = f"http://localhost:5000/department/{department_id}"
 
             try:
                 response = requests.delete(api_endpoint)
                 if response.status_code == 200:
                     messagebox.showinfo("Success", "Department deleted successfully.")
-                    # Update the treeview with the new data
+                    
                     self.show_department_data()
-                    # Clear the entries
+                   
                     self.clear_entries()
                 else:
                     messagebox.showerror("Error", f"Failed to delete department: {response.text}")
